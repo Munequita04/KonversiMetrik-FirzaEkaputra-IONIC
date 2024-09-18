@@ -1,1 +1,2 @@
-# KonversiMetrik-FirzaEkaputra-IONIC![Uploading Tugas APP Mobile.gif…]()
+# KonversiMetrik-FirzaEkaputra-IONIC
+![Uploading Tugas APP Mobile.gif…]()
