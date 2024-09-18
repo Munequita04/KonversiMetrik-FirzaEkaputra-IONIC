@@ -1,0 +1,66 @@
+<ion-app>
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-title>Konversi Metrik</ion-title>
+    </ion-toolbar>
+    <ion-toolbar>
+      <ion-title size="small">By: Firzaputra</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-grid>
+      <ion-row class="ion-justify-content-center">
+        <ion-col size="12" size-md="6">
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>Konversi Metrik</ion-card-title>
+            </ion-card-header>
+
+            <ion-card-content>
+              <!-- Dropdown for selecting Metric -->
+              <ion-item>
+                <ion-label>Dari:</ion-label>
+                <ion-select placeholder="Pilih Metrik" (ionChange)="onMetricChange($event)">
+                  <ion-select-option *ngFor="let metric of metrics" [value]="metric">{{ metric.name }}</ion-select-option>
+                </ion-select>
+              </ion-item>
+
+              <!-- Dropdown for first unit -->
+              <ion-item>
+                <ion-label>--Pilih Satuan</ion-label>
+                <ion-select [disabled]="!selectedMetric" placeholder="Pilih Satuan" [(ngModel)]="fromUnit">
+                  <ion-select-option *ngFor="let unit of availableUnits" [value]="unit">{{ unit }}</ion-select-option>
+                </ion-select>
+              </ion-item>
+
+              <!-- Dropdown for second unit -->
+              <ion-item>
+                <ion-label>Ke:</ion-label>
+                <ion-select [disabled]="!selectedMetric" placeholder="Pilih Satuan" [(ngModel)]="toUnit">
+                  <ion-select-option *ngFor="let unit of availableUnits" [value]="unit">{{ unit }}</ion-select-option>
+                </ion-select>
+              </ion-item>
+
+              <!-- Input for value -->
+              <ion-item>
+                <ion-label position="floating">Masukkan Nilai</ion-label>
+                <ion-input type="number" [(ngModel)]="inputValue" (ionInput)="convert()" required></ion-input>
+              </ion-item>
+
+              <!-- Result -->
+              <ion-item *ngIf="result !== null">
+                <ion-label>Hasil: {{ result }}</ion-label>
+              </ion-item>
+
+              <!-- Warning for non-numeric input -->
+              <ion-item *ngIf="isNaN(inputValue)">
+                <ion-label color="danger">Harap masukkan nilai numerik</ion-label>
+              </ion-item>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-content>
+</ion-app>
